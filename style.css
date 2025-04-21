@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+  }
+  
+  .board {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .column {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 300px;
+    min-height: 100px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+  }
+  
+  .column[data-column="in-progress"] {
+    overflow: visible;
+  }
+  
+  .cards {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .card {
+    background: #f1f2f6;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: grab;
+    word-break: break-word;
+  }
+  
+  .card:active {
+    cursor: grabbing;
+  }
+  
+  .task-text:focus {
+    outline: none;
+    background: #dcdde1;
+    padding: 2px;
+  }
+  
+  .add-btn {
+    margin-top: 5px;
+    padding: 6px 10px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-btn:hover {
+    background: #2980b9;
+  }
+  
+  .task-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .task-text {
+    flex: 1;
+    padding: 4px;
+    word-break: break-word;
+  }
+  
+  .delete-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+    color: white;
+    background-color: crimson;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background-color: darkred;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px 0;
+    color: #333;
+  }
+
+
