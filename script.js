@@ -7,7 +7,6 @@ const boardData = new Map([
   const columns = document.querySelectorAll(".column");
   const board = document.querySelector(".board");
   
-  // Load from localStorage
   function loadBoard() {
     const saved = localStorage.getItem("kanbanBoard");
     if (saved) {
@@ -19,27 +18,29 @@ const boardData = new Map([
     renderBoard();
   }
   
-  // Save to localStorage
   function saveBoard() {
     const obj = Object.fromEntries(boardData);
     localStorage.setItem("kanbanBoard", JSON.stringify(obj));
   }
   
-  // Create task element
   function createTaskElement(text, colKey, index) {
     const card = document.createElement("div");
-    card.className = "card";
+    card.className = "card bg-[#ecf0f1] p-3 rounded-md cursor-grab shadow-sm transition hover:scale-[1.02] hover:shadow-md active:cursor-grabbing";
     card.draggable = true;
     card.dataset.column = colKey;
     card.dataset.index = index;
+  
     card.innerHTML = `
-      <div contenteditable="true" class="task-text">${text}</div>
+      <div class="task-content flex justify-between items-center gap-2">
+        <div contenteditable="true" class="task-text flex-1 p-1">${text}</div>
+        <button class="delete-btn px-3 py-1 text-sm text-white bg-[crimson] rounded-md hover:bg-[darkred] transition hover:-translate-y-0.5">Delete</button>
+      </div>
     `;
+  
     card.addEventListener("dragstart", dragStart);
     return card;
   }
   
-  // Render full board
   function renderBoard() {
     columns.forEach(col => col.querySelector(".cards").innerHTML = "");
     for (const [key, tasks] of boardData.entries()) {
@@ -52,25 +53,20 @@ const boardData = new Map([
     }
   }
   
-  // Add task
   function addTask(columnKey) {
     const newTask = { text: "New Task" };
     const updated = [...boardData.get(columnKey), newTask];
     boardData.set(columnKey, updated);
     saveBoard();
     renderBoard();
-
-    // Dynamically adjust the height of the "In Progress" column
+  
     if (columnKey === "in-progress") {
       const inProgressColumn = document.querySelector('[data-column="in-progress"]');
       const taskCount = boardData.get(columnKey).length;
-
-      // Adjust height based on the number of tasks
-      inProgressColumn.style.height = `${100 + taskCount * 50}px`; // Example: base height + 50px per task
+      inProgressColumn.style.height = `${100 + taskCount * 50}px`; 
     }
   }
   
-  // Drag and drop logic
   let dragged;
   
   function dragStart(e) {
@@ -96,7 +92,6 @@ const boardData = new Map([
     renderBoard();
   });
   
-  // Handle editable task saving
   board.addEventListener("input", e => {
     if (e.target.classList.contains("task-text")) {
       const card = e.target.closest(".card");
@@ -108,30 +103,12 @@ const boardData = new Map([
     }
   });
   
-  // Button listeners
   document.querySelectorAll(".add-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const columnKey = btn.closest(".column").dataset.column;
       addTask(columnKey);
     });
   });
-
-  function createTaskElement(text, colKey, index) {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.draggable = true;
-    card.dataset.column = colKey;
-    card.dataset.index = index;
-    card.innerHTML = `
-  <div class="task-content">
-    <div contenteditable="true" class="task-text">${text}</div>
-    <button class="delete-btn">Delete 🗑</button>
-  </div>
-`;
-
-    card.addEventListener("dragstart", dragStart);
-    return card;
-  }
   
   board.addEventListener("click", e => {
     if (e.target.classList.contains("delete-btn")) {
@@ -146,3 +123,4 @@ const boardData = new Map([
   });
   
   loadBoard();
+  

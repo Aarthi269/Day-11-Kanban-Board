@@ -4,26 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kanban Board</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="./dist/output.css" rel="stylesheet">
 </head>
-<body>
-  <h1>Kanban Board</h1>
-  <div class="board">
-    <div class="column" data-column="todo">
-      <h2>To Do</h2>
-      <button class="add-btn">+ Add Card</button>
-      <div class="cards"></div>
+<body class="m-0 font-['Roboto',sans-serif] text-[#333] bg-gradient-to-b from-[#f5f6fa] to-[#dcdde1]">
+
+  <h1 class="text-center text-[2.5rem] my-5 text-[#2c3e50] drop-shadow-md font-bold">Kanban Board</h1>
+
+  <div class="board flex gap-5 p-5 justify-center items-start">
+
+    <!-- Column: To Do -->
+    <div class="column bg-[#f9ebea] p-4 rounded-[12px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] w-[300px] min-h-[150px] transition-all hover:-translate-y-1 hover:shadow-[0_6px_15px_rgba(0,0,0,0.2)]" data-column="todo">
+      <h2 class="text-center text-xl font-semibold text-[#34495e] border-b-2 border-[#3498db] pb-1 mb-2">To Do</h2>
+      <button class="add-btn mt-2 px-3 py-2 bg-[#79a5e2] text-white rounded-md text-base hover:bg-[#2980b9] hover:-translate-y-0.5 transition">+ Add Card</button>
+      <div class="mt-4 flex flex-col gap-2 cards"></div>
     </div>
-    <div class="column" data-column="in-progress">
-      <h2>In Progress</h2>
-      <button class="add-btn">+ Add Card</button>
-      <div class="cards"></div>
+
+    <!-- Column: In Progress -->
+    <div class="column bg-[#f8f2df] p-4 rounded-[12px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] w-[300px] min-h-[150px] transition-all hover:-translate-y-1 hover:shadow-[0_6px_15px_rgba(0,0,0,0.2)]" data-column="in-progress">
+      <h2 class="text-center text-xl font-semibold text-[#34495e] border-b-2 border-[#3498db] pb-1 mb-2">In Progress</h2>
+      <button class="add-btn mt-2 px-3 py-2 bg-[#79a5e2] text-white rounded-md text-base hover:bg-[#2980b9] hover:-translate-y-0.5 transition">+ Add Card</button>
+      <div class="mt-4 flex flex-col gap-2 cards"></div>
     </div>
-    <div class="column" data-column="done">
-      <h2>Done</h2>
-      <button class="add-btn">+ Add Card</button>
-      <div class="cards"></div>
+
+    <!-- Column: Done -->
+    <div class="column bg-[#def9e8] p-4 rounded-[12px] shadow-[0_4px_10px_rgba(0,0,0,0.1)] w-[300px] min-h-[150px] transition-all hover:-translate-y-1 hover:shadow-[0_6px_15px_rgba(0,0,0,0.2)]" data-column="done">
+      <h2 class="text-center text-xl font-semibold text-[#34495e] border-b-2 border-[#3498db] pb-1 mb-2">Done</h2>
+      <button class="add-btn mt-2 px-3 py-2 bg-[#79a5e2] text-white rounded-md text-base hover:bg-[#2980b9] hover:-translate-y-0.5 transition">+ Add Card</button>
+      <div class="mt-4 flex flex-col gap-2 cards"></div>
     </div>
+
   </div>
 
   <script src="script.js"></script>
